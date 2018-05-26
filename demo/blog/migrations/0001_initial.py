@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('pgcomment', '0002_create_function'),
+        ('pgcomments', '0002_create_function'),
     ]
 
     operations = [
@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('content', models.TextField(default='')),
-                ('comments', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='pgcomment.Thread')),
+                ('comments', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='pgcomments.Thread')),
             ],
         ),
     ]

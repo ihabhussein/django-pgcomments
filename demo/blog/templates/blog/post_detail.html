@@ -8,7 +8,7 @@
 
 <p><a href="#" class="add-comment" data-path=",">Reply</a></p>
 <div id="commments" class="thread">
-    {% include "pgcomment/thread.html" with list=object.comments prefix=',' %}
+    {% include "pgcomments/thread.html" with list=object.comments prefix=',' %}
 </div>
 
 <form method="post" action="{% url 'add_comment' object.pk %}">

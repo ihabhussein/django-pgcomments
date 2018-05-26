@@ -7,7 +7,7 @@
         <p><a href="#" class="add-comment" data-path="{{ prefix|add:suffix }}">Reply</a></p>
         {% if item.children|length %}
             <div class="thread">
-                {% include "pgcomment/thread.html" with list=item.children prefix=prefix|add:suffix|add:',' %}
+                {% include "pgcomments/thread.html" with list=item.children prefix=prefix|add:suffix|add:',' %}
             </div>
         {% endif %}
         {% endwith %}

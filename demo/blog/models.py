@@ -1,5 +1,5 @@
 from django.db import models
-from pgcomment.models import Thread
+from pgcomments.models import Thread
 
 
 class Post(models.Model):

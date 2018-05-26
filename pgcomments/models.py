@@ -21,12 +21,12 @@ class Thread(models.Model):
 
     def add_comment(self, path, user, text):
         with connection.cursor() as cursor:
-            cursor.execute("SELECT pgcomment_add_comment(%s, %s, %s, %s);", (
+            cursor.execute("SELECT pgcomments_add_comment(%s, %s, %s, %s);", (
                 self.pk, self._fix_path(path), user.username, text,
             ))
 
     def set_comment_attributes(self, path, new_value):
         with connection.cursor() as cursor:
-            cursor.execute("SELECT pgcomment_set_comment_attributes(%s, %s, %s);", (
+            cursor.execute("SELECT pgcomments_set_comment_attributes(%s, %s, %s);", (
                 self.pk, self._fix_path(path), json.dumps(new_value),
             ))
