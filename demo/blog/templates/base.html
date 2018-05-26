@@ -7,7 +7,8 @@
 </head>
 <body>
     <header>
-        <a href="{% url 'index' %}">Home</a>
+        <a href="{% url 'index' %}">Home</a> |
+        <a href="{% url 'add_post' %}">Create Post</a>
     </header>
     {% block content %}{% endblock %}
     {% block endscripts %}{% endblock %}
