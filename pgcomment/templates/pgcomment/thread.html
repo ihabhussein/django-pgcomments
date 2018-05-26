@@ -1,0 +1,15 @@
+{% for item in list %}
+    <div class="comment" data-path="{{ prefix }}{{ forloop.counter0 }}">
+        {% with suffix=forloop.counter0|stringformat:"s" %}
+        <div class="author">{{ item.author|default:'Unknown' }}</div>
+        <div class="date">{{ item.created_at }}</div>
+        <div class="text">{{ item.text }}</div>
+        <p><a href="#" class="add-comment" data-path="{{ prefix|add:suffix }}">Reply</a></p>
+        {% if item.children|length %}
+            <div class="thread">
+                {% include "pgcomment/thread.html" with list=item.children prefix=prefix|add:suffix|add:',' %}
+            </div>
+        {% endif %}
+        {% endwith %}
+    </div>
+{% endfor %}

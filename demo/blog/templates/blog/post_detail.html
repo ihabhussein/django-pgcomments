@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<h1>Post #{{ object.pk }}</h1>
+
+<div>{{ object.content|safe }}</div>
+
+<p><a href="#" class="add-comment" data-path=",">Reply</a></p>
+<div id="commments" class="thread">
+    {% include "pgcomment/thread.html" with list=object.comments prefix=',' %}
+</div>
+
+<form method="post" action="{% url 'add_comment' object.pk %}">
+    {% csrf_token %}
+    <input type="hidden" name="path" id="form-path" value="">
+    <div id="overlay">
+        <div class="comment-form">
+            <label>Your reply:</label>
+            <textarea name="text" id="form-text" required></textarea>
+            <span>
+                <button type="button" id="btn-cancel">Cancel</button>
+                <button type="submit">Save</button>
+            </span>
+        </div>
+    </div>
+</form>
+{% endblock %}
+
+{% block extrastyles %}
+<link rel="stylesheet" href="{% static 'blog/thread.css' %}">
+{% endblock %}
+
+{% block endscripts %}
+<script src="{% static 'blog/thread.js' %}"></script>
+{% endblock %}

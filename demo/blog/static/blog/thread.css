@@ -1,0 +1,31 @@
+.thread {
+    border-top: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    padding: 0.25em 0.25em 0.25em 2em;
+}
+.thread .author {
+    font-weight: bold;
+}
+.thread .date {
+    color: gray;
+    font-size: small;
+}
+.thread .text {
+    padding: 0.5em 0;
+}
+#overlay {
+    position: fixed;
+    display: none;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.comment-form {
+    width: 20em; height: 10em;
+    background-color: white;
+    border-radius: 0.25em;
+    margin: auto;
+    display: flex; flex-direction: column;
+}
+.comment-form textarea {
+    flex-grow: 1;
+}
