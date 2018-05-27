@@ -49,5 +49,5 @@ class Thread(models.Model):
                 "SELECT pgcomments_get_attribute(%s, %s, %s)",
                 (self.pk, self._fix_path(path), name)
             )
-            row = cursor.fetch_one()
-            return json.loads(row[0])
+            row = cursor.fetchone()
+            return row[0]
