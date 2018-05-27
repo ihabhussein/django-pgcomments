@@ -1,1 +1,1 @@
-# django-pgcommentss
+# django-pgcomments
