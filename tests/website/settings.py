@@ -16,7 +16,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pgcomments',
-    'test.blog',
+    'tests.blog',
 ]
 
 MIDDLEWARE = [
@@ -29,7 +29,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'test.website.urls'
+ROOT_URLCONF = 'tests.website.urls'
 
 TEMPLATES = [
     {

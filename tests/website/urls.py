@@ -1,8 +1,8 @@
 from django.urls import path, include
 from django.contrib import admin
 from django.views.generic import ListView, DetailView, View
-from test.blog.models import Post
-from test.blog.views import addPost, addComment
+from tests.blog.models import Post
+from tests.blog.views import addPost, addComment
 
 
 urlpatterns = [
