@@ -3,6 +3,11 @@ from django.db import models, connection
 from django.contrib.postgres.fields import JSONField
 
 
+RESERVED_KEYS = [
+    'author', 'text', 'created_at', 'children',
+]
+
+
 class Thread(models.Model):
     thread = JSONField(default=list)
 
@@ -26,6 +31,11 @@ class Thread(models.Model):
             ))
 
     def set_attribute(self, path, name, value):
+        if name in RESERVED_KEYS:
+            raise ValueError("""
+                Can not change any of the reserved keys: {0}
+            """.format(RESERVED_KEYS))
+
         with connection.cursor() as cursor:
             cursor.execute("SELECT pgcomments_set_attribute(%s, %s, %s, %s::jsonb)", (
                 self.pk, self._fix_path(path), name, json.dumps(value),
