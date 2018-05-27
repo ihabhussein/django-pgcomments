@@ -6,5 +6,5 @@ from django.core.management import execute_from_command_line
 
 
 if __name__ == "__main__":
-    environ.setdefault("DJANGO_SETTINGS_MODULE", "demo.website.settings")
+    environ.setdefault("DJANGO_SETTINGS_MODULE", "test.website.settings")
     execute_from_command_line(argv)
