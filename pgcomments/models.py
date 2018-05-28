@@ -28,7 +28,7 @@ class Thread(models.Model):
         with connection.cursor() as cursor:
             cursor.execute(
                 "SELECT pgcomments_add_comment(%s, %s, %s, %s)",
-                (self.pk, self._fix_path(path), user.username, text)
+                (self.pk, self._fix_path(path), user, text)
             )
 
     def set_attribute(self, path, name, value):

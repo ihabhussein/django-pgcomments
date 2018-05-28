@@ -1,13 +1,12 @@
 from django.test import TestCase
-from django.contrib.auth.models import AnonymousUser
 from pgcomments.models import Thread
 
 
 class AttributesTestCase(TestCase):
     def setUp(self):
         thread = Thread.objects.create()
-        thread.add_comment('', AnonymousUser, 'text 1')
-        thread.add_comment('0', AnonymousUser, 'text 2')
+        thread.add_comment('', 'AnonymousUser', 'text 1')
+        thread.add_comment('0', 'AnonymousUser', 'text 2')
         self.pk = thread.pk
 
 

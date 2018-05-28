@@ -14,6 +14,6 @@ def addComment(request, *args, **kwargs):
     text = request.POST.get('text', '')
 
     post = get_object_or_404(Post, pk=pk)
-    post.comments.add_comment(path, request.user, text)
+    post.comments.add_comment(path, request.user.username, text)
 
     return HttpResponseRedirect(reverse('post', kwargs={'pk': pk}))
