@@ -32,6 +32,14 @@ class Thread(models.Model):
             )
         self.refresh_from_db()
 
+    def delete_comment(self, path, recursive):
+        with connection.cursor() as cursor:
+            cursor.execute(
+                "SELECT pgcomments_delete_{0}(%s, %s)".format('thread' if recursive else 'comment'),
+                (self.pk, self._fix_path(path))
+            )
+        self.refresh_from_db()
+
     def set_attribute(self, path, name, value):
         if name in RESERVED_KEYS:
             raise ValueError("""
