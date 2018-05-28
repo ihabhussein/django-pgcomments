@@ -7,13 +7,12 @@ class BasicTestCase(TestCase):
         thread = Thread.objects.create()
         thread.add_comment('', 'AnonymousUser', 'text 1')
         thread.add_comment('0', 'AnonymousUser', 'text 2')
-        self.pk = thread.pk
+        self.object = thread
 
 
     def test_create(self):
-        self.assertNotEqual(self.pk, None)
+        self.assertNotEqual(self.object.pk, None)
 
     def test_threading(self):
-        object = Thread.objects.get(pk=self.pk)
-        self.assertEqual(len(object.thread), 1)
-        self.assertEqual(len(object.thread[0]['children']), 1)
+        self.assertEqual(len(self.object.thread), 1)
+        self.assertEqual(len(self.object.thread[0]['children']), 1)

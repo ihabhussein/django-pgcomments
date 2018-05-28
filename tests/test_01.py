@@ -7,26 +7,22 @@ class AttributesTestCase(TestCase):
         thread = Thread.objects.create()
         thread.add_comment('', 'AnonymousUser', 'text 1')
         thread.add_comment('0', 'AnonymousUser', 'text 2')
-        self.pk = thread.pk
+        self.object = thread
 
 
     def test_set_attr(self):
-        object = Thread.objects.get(pk=self.pk)
-        object.set_attribute('0', 'votes', 3)
-
-        object = Thread.objects.get(pk=self.pk)
-        self.assertEqual(object.get_attribute('0', 'votes'), 3)
+        (path, name, value) = ('0', 'votes', 3)
+        self.object.set_attribute(path, name, value)
+        get_value = self.object.get_attribute(path, name)
+        self.assertEqual(get_value, value)
 
     def test_set_complex_attr(self):
-        object = Thread.objects.get(pk=self.pk)
-        object.set_attribute('0,0', 'meta', {'this': 1, 'that': 2})
-
-        object = Thread.objects.get(pk=self.pk)
-        value = object.get_attribute('0,0', 'meta')
-        self.assertEqual(value['this'], 1)
-        self.assertEqual(value['that'], 2)
+        (path, name, value) = ('0,0', 'meta', {'this': 1, 'that': 2})
+        self.object.set_attribute(path, name, value)
+        get_value = self.object.get_attribute(path, name)
+        self.assertEqual(get_value, value)
 
     def test_set_reserved_keys(self):
-        object = Thread.objects.get(pk=self.pk)
+        (path, name, value) = ('0', 'author', 'new_value')
         with self.assertRaises(ValueError):
-            object.set_attribute('0', 'author', 'new_value')
+            self.object.set_attribute(path, name, value)
