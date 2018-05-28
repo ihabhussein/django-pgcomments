@@ -30,6 +30,7 @@ class Thread(models.Model):
                 "SELECT pgcomments_add_comment(%s, %s, %s, %s)",
                 (self.pk, self._fix_path(path), user, text)
             )
+        self.refresh_from_db()
 
     def set_attribute(self, path, name, value):
         if name in RESERVED_KEYS:
@@ -42,6 +43,7 @@ class Thread(models.Model):
                 "SELECT pgcomments_set_attribute(%s, %s, %s, %s::jsonb)",
                 (self.pk, self._fix_path(path), name, json.dumps(value))
             )
+        self.refresh_from_db()
 
     def get_attribute(self, path, name):
         with connection.cursor() as cursor:
