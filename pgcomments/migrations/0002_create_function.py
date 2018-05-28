@@ -79,14 +79,8 @@ class Migration(migrations.Migration):
                 _id integer,
                 _path integer[]
             ) RETURNS VOID LANGUAGE SQL AS $$
-                WITH X AS (
-                    SELECT ('{' || array_to_string(_path, ',children,') || '}')::text[] AS path,
-                           jsonb_build_object('author', '', 'text', '') AS new_value
-                )
-                UPDATE pgcomments_thread
-                   SET thread = jsonb_set(thread, X.path, thread#>X.path || X.new_value)
-                  FROM X
-                 WHERE id = _id;
+                SELECT pgcomments_set_attribute (_id, _path, 'author', '""');
+                SELECT pgcomments_set_attribute (_id, _path, 'text', '""');
             $$;
         """, reverse_sql="""
             DROP FUNCTION IF EXISTS pgcomments_delete_comment (integer, integer[]);
