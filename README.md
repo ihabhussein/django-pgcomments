@@ -44,7 +44,7 @@ Include a `OneToOneField` in your model for the comments:
 To display the comments, there is a template included in the app to recursively
 render the nested comment threads. In your template:
 
-    {% include "pgcomments/thread.html" with list=object.comments prefix=',' %}
+    {% include "pgcomments/thread.html" with list=object.comments %}
 
 ## License
 
